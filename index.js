@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: 'root',
 
     password: 'yourRootPassword',
-    database: 'employee_database'
+    database: 'employee_database',
   });
 
   connection.connect((err) => {
@@ -75,72 +75,12 @@ const employeeData = () => {
         });
 };
 
-// "Add department information",
-// "Add job role information",
-// "Add employee details",
-// "View employee details",
-// "View department information",
-// "View job role information",
-// "Update employee roles"
-
-var employee = [{
-  name: 'firstName',
-  type: 'input',
-  message: 'What is the employees first name?',
-},
-{
-  name: 'lastName',
-  type: 'input',
-  message: 'What is the employees last name?',
-},
-{
-    name: 'mgrFirstName',
-    type: 'input',
-    message: 'What is the managers first name?',
-  },
-{
-    name: 'mgrLastName',
-    type: 'input',
-    message: 'What is the managers last name?',
-  }
-];
-
-var department = {
-  name: 'department',
-  type: 'list',
-  message: 'What is the name of the department?',
-  choices: [
-            "Finance Manager",
-            "Accountant",
-            "HR Manager",
-            "Researcher",
-            "Developer"
-            ],
-};
-
-
-var role = {
-  name: 'employeeRole',
-  type: 'input',
-  message: 'What is the role title?',
-};
-
-var salary = {
-  name: 'salary',
-  type: 'input',
-  message: 'What is the new salary amount?',
-};
 
 const addEmployee = () => {
   inquirer
-    .prompt()[
+    .prompt([
       {
-        name: 'firstName',
-        type: 'input',
-        message: 'What is the employees name?',
-      },
-      {
-        name: 'lastName',
+        name: 'name',
         type: 'input',
         message: 'What is the employees name?',
       },
@@ -165,7 +105,7 @@ const addEmployee = () => {
         type: 'input',
         message: 'What is the managers last name?',
       }
-    ]
+    ])
   
     .then((data) => {
 
@@ -189,6 +129,7 @@ const addEmployee = () => {
         console.log(res)
         });
     });
+  };
   
 
   // const viewEmployee = () => {
@@ -238,8 +179,8 @@ const addEmployee = () => {
   
 
 
-// //     })
-// // }
+  
+
 // // //Add departments, roles, employees
 
 

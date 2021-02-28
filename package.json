@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Use this application to maintain employee data",
   "main": "index.js",
-  "dependencies": {
-    "inquirer": "^7.3.3",
-    "mysql": "^2.18.1"
-  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/luuluu75/employee-tracker/issues"
   },
-  "homepage": "https://github.com/luuluu75/employee-tracker#readme"
+  "homepage": "https://github.com/luuluu75/employee-tracker#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
 }
