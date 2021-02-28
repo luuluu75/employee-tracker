@@ -1,0 +1,29 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "this application allows people managers to view, edit and save thier employees information",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luuluu75/employee-tracker.git"
+  },
+  "keywords": [
+    "employee",
+    "tracker",
+    "database",
+    "sql"
+  ],
+  "author": "Thu Van Luu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luuluu75/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/luuluu75/employee-tracker#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
