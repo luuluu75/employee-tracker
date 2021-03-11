@@ -1,5 +1,6 @@
 const mysql = require('mysql');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const console = require('console.table');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -220,10 +221,8 @@ viewEmployee = () => {
       connection.query('select * from employee', 
         (err, res) => {
           if (err) throw err;
-          res.forEach((employee) => {
-            console.log(
-              `firstName: ${employee.first_name} || surname: ${employee.last_name} || role: ${employee.role_id} || manager: ${employee.manager_id}`
-            );
+          res.forEach(() => {
+              `firstName: ${employee.first_name} || surname: ${employee.last_name} || role: ${employee.role_id} || manager: ${employee.manager_id}`;
             console.table(employee);
             employeeData();
           });
@@ -249,9 +248,9 @@ const viewRole = () => {
       connection.query('select * from employee_role',
         (err, res) => {
           if (err) throw err;
-          res.forEach((role) => {
+          res.forEach(({}) => {
             console.log(
-              `firstName: ${role.id} || surname: ${role.title} || role: ${salary} || manager: ${dept_id}`
+              `id: ${id} || title: ${role_title} || salary: ${salary} || dept: ${dept_id}`
             );
             employeeData();
           });
