@@ -65,7 +65,7 @@ const employeeData = () => {
           break;
 
         case 'Update employee details':
-          updateEmployee();
+          updateEmployeeRole();
           break;
 
         default:
@@ -272,54 +272,47 @@ const viewRole = () => {
 };
 
 
-  const updateEmployee = () => {
-    inquirer
-      .prompt([
-        {
+const updateEmployeeRole = () => {
+  inquirer
+    .prompt([
+      {
         name: 'firstName',
         type: 'input',
         message: 'What is the first name of the employee?',
-        },
-        {
-          name: 'lastName',
-          type: 'input',
-          message: 'What is the last name of the employee?',
-        },
-        {
-          name: 'updateOptions',
-          type: 'list',
-          message: 'What is What would you like to update?',
-          choices: [
-            "First Name",
-            "Last Name",
-            "Job Title",
-            "Manager",
-            "Developer"
-          ]
-          }
-      ])
+      },
+      {
+        name: 'lastName',
+        type: 'input',
+        message: 'What is the last name of the employee?',
+      },
+      {
+        name: 'updateRole',
+        type: 'list',
+        message: 'What is the employees new role?',
+        choices: [
+          "Finance Manager",
+          "Accountant",
+          "HR Manager",
+          "Researcher",
+          "Developer"
+        ]
+      }
+    ])
 
-      .then((answer) => {
-        const query1 = 'SELECT position, song, year FROM top5000 WHERE ?';
-        connection.query(query1, { artist: answer.artist }, (err, res) => {
-          res.forEach(({ position, song, year }) => {
-            console.log(
-            );
-          });
+    .then((data) => {
+      connection.query("SELECT role_id FROM employee_role WHERE role_title = ?", [data.updateRole],
+        (err, res) => {
+          if (err) throw err;
+          var roleId = res[0].role_id
+          console.log(roleId)
+
+
+          connection.query('UPDATE employee SET role_id = (?) where first_name = (?) and last_name = (?)', [roleId, data.firstName, data.lastName],
+            (err, res) => {
+              if (err) throw err;
+              console.log(res)
+            });
         });
-      });
-  };
+    });
+};
 
-
-
-
-
-
-
-// // //Add departments, roles, employees
-
-
-// //View departments, roles, employees
-
-
-// //Update employee roles
