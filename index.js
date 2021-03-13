@@ -66,13 +66,8 @@ function employeeData() {
           viewRole();
           break;
 
-<<<<<<< HEAD
-        case 'Update employee details':
-          updateEmployeeRole();
-=======
         case 'Update employee role':
           updateRole();
->>>>>>> 0354dc1559b8d3cad9d2628a7756a6ce02b230ea
           break;
 
         case 'Exit Employee Tracker':
@@ -272,42 +267,6 @@ const viewRole = () => {
   //   })
   // }
 
-<<<<<<< HEAD
-const updateEmployeeRole = () => {
-  inquirer
-    .prompt([
-      {
-        name: 'firstName',
-        type: 'input',
-        message: 'What is the first name of the employee?',
-      },
-      {
-        name: 'lastName',
-        type: 'input',
-        message: 'What is the last name of the employee?',
-      },
-      {
-        name: 'updateRole',
-        type: 'list',
-        message: 'What is the employees new role?',
-        choices: [
-          "Finance Manager",
-          "Accountant",
-          "HR Manager",
-          "Researcher",
-          "Developer"
-        ]
-      }
-    ])
-
-    .then((data) => {
-      connection.query("SELECT role_id FROM employee_role WHERE role_title = ?", [data.updateRole],
-        (err, res) => {
-          if (err) throw err;
-          var roleId = res[0].role_id
-          console.log(roleId)
-
-=======
     inquirer
       .prompt([
         {
@@ -331,7 +290,6 @@ const updateEmployeeRole = () => {
       ])
 
           .then((answer) => {
->>>>>>> 0354dc1559b8d3cad9d2628a7756a6ce02b230ea
 
           connection.query('UPDATE employee SET role_id = (?) where first_name = (?) and last_name = (?)', [roleId, data.firstName, data.lastName],
             (err, res) => {
@@ -342,22 +300,3 @@ const updateEmployeeRole = () => {
     });
 };
 
-<<<<<<< HEAD
-=======
-          });
-  
-  
-      //             connection.query(`Update employee (first_name, last_name) VALUES ?,? WHERE , [data.firstName, data.lastName],
-      //             (err, res) => {
-      //               if (err) throw err;
-      //               console.log("Employee Name updated")
-      //           })
-      //         }
-      //         else if (data.firstName === null) {
-      //           connection.query(`INSERT INTO employee ( last_name) VALUES ?,?`, [data.firstName, data.lastName],
-      //           (err, res) => {
-      //             if (err) throw err;
-      //             console.log("Employee Name updated")
-      //         })
-  
->>>>>>> 0354dc1559b8d3cad9d2628a7756a6ce02b230ea
