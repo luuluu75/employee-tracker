@@ -277,6 +277,15 @@ const viewRole = () => {
 
   //         .then((answer) => {
 
+          connection.query('UPDATE employee SET role_id = (?) where first_name = (?) and last_name = (?)', [roleId, data.firstName, data.lastName],
+            (err, res) => {
+              if (err) throw err;
+              console.log(res)
+            });
+        });
+    });
+};
+
 
   //         });
   
@@ -294,3 +303,4 @@ const viewRole = () => {
       //             console.log("Employee Name updated")
       //
     
+
