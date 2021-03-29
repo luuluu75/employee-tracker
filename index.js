@@ -93,7 +93,7 @@ const addDepartment = () => {
 
     .then((data) => {
       connection.query(`INSERT INTO department (dept_name) VALUES (?)`, [data.deptName],
-        (err, res) => {
+         (err, res) => {
           if (err) throw err;
           console.table(res)
           employeeData();
@@ -103,14 +103,15 @@ const addDepartment = () => {
 
 const addRole = () => {
 
-  let departmentNames = [];
-  
+  let departmentList = [];
+
   connection.query(`SELECT * from department`,
     (err, res) => {
       if (err) throw err;
        for (let i = 0; i < res.length; i++) {
-        departmentNames.push(res[i].name);
+        departmentList.push(res[i].dept_name);
       }
+      console.table(departmentList);
 
       inquirer
         .prompt([
@@ -128,17 +129,18 @@ const addRole = () => {
             name: 'deptName',
             type: 'list',
             message: 'Which department should this role belong to?',
-            choices: departmentNames 
+            choices: departmentList 
             }
           ])
         //then convert department selected to id
         .then((data) => {
-          connection.query(`select dept_id from department where dept_name = ?`, [data.deptname],
+
+          connection.query(`select dept_id from department where dept_name = ?`, [data.deptName],
             (err, res) => {
               if (err) throw err;
-              console.log(res)
-
-              connection.query(`INSERT INTO employee_role (role_title, salary, dept_id) VALUES (?,?,?)`, [data.roleName, parseInt(data.roleSalary), deptId],
+              console.log(res.dept_id);
+              
+              connection.query(`INSERT INTO employee_role VALUES (?,?,?)`, [data.roleName, parseInt(data.roleSalary), parseInt(dept_id)],
                 (err, res) => {
                   if (err) throw err;
                  res.employeeData();
@@ -277,14 +279,12 @@ const viewRole = () => {
 
   //         .then((answer) => {
 
-          connection.query('UPDATE employee SET role_id = (?) where first_name = (?) and last_name = (?)', [roleId, data.firstName, data.lastName],
-            (err, res) => {
-              if (err) throw err;
-              console.log(res)
-            });
-        });
-    });
-};
+          // connection.query('UPDATE employee SET role_id = (?) where first_name = (?) and last_name = (?)', [roleId, data.firstName, data.lastName],
+          //   (err, res) => {
+          //     if (err) throw err;
+          //     console.log(res)
+          //   });
+
 
 
   //         });
