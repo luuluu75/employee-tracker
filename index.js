@@ -135,12 +135,12 @@ const addRole = () => {
         //then convert department selected to id
         .then((data) => {
 
-          connection.query(`select dept_id from department where dept_name = ?`, [data.deptName],
+          let deptRole = connection.query(`select dept_id from department where dept_name = ?`, [data.deptName],
             (err, res) => {
               if (err) throw err;
-              console.log(res.dept_id);
+              console.log(res);
               
-              connection.query(`INSERT INTO employee_role VALUES (?,?,?)`, [data.roleName, parseInt(data.roleSalary), parseInt(dept_id)],
+              connection.query(`INSERT INTO employee_role VALUES (?,?,?)`, [data.roleName, data.roleSalary, deptRole],
                 (err, res) => {
                   if (err) throw err;
                  res.employeeData();
