@@ -68,7 +68,7 @@ const employeeData = () => {
           viewRole();
           break;
 
-        case 'Update employee role':
+        case 'Update employee roles':
           updateRole();
           break;
 
@@ -123,7 +123,7 @@ const addRole = () => {
           {
             name: 'roleSalary',
             type: 'input',
-            message: 'What is the salary for the new job role?',
+            message: 'What is the new salary?',
           },
           {
             name: 'deptName',
@@ -135,20 +135,25 @@ const addRole = () => {
         //then convert department selected to id
         .then((data) => {
 
-          let deptRole = connection.query(`select dept_id from department where dept_name = ?`, [data.deptName],
+          console.log(data);
+      
+          connection.query("SELECT dept_id FROM department WHERE dept_name = ?", [data.deptName],
             (err, res) => {
               if (err) throw err;
-              console.log(res);
-              
-              connection.query(`INSERT INTO employee_role VALUES (?,?,?)`, [data.roleName, data.roleSalary, deptRole],
+              let deptRole = res[0].dept_id
+              console.log(deptRole)
+      
+              connection.query("INSERT INTO employee_role (role_title, salary, dept_id) VALUES (?,?,?)", [data.roleName, parseInt(data.roleSalary), deptRole],
                 (err, res) => {
                   if (err) throw err;
-                 res.employeeData();
-                })
+                  console.table(res)
+                  employeeData();
+                });
             });
         });
     });
 };
+
 
 const addEmployee = () => {
   connection.query(`SELECT * from employee_role`,
@@ -219,7 +224,6 @@ const addEmployee = () => {
     });
   };
 
-
 const viewEmployee = () => {
   let query = 'select e.employee_id, e.first_name, e.last_name, er.role_title, d.dept_name, er.salary from employee e, department d, employee_role er where e.role_id = er.role_id and d.dept_id = er.dept_id;';
       connection.query(query, (err, res) => {
@@ -242,39 +246,36 @@ const viewRole = () => {
           if (err) throw err;
             console.table(res);    
           });
-        }
-    
+        };
 
+const updateRole = () => {
 
-  // updateRole = () => {
-  // //   connection.query(`SELECT * from employee`,
-  // //   (err, res) => {
-  // //     if (err) throw err;
-  // //     res.table('name', surname')
-  // //   })
-  //  }
+  let name = [];
 
-  //   inquirer
-  //     .prompt([
-  //       {
-  //         name: 'empList',
-  //         type: 'list',
-  //         message: 'Which Employee would you like to update?',
-  //         choices: () => { //get list of employees
-  //         res.employee = string.concat(first_name, last_name);
-  //         push(employee);
-  //         }
-  //       },
-  //       {
-  //         name: 'newRole',
-  //         type: 'list',
-  //         message: 'What is the new role?',
-  //         choices: () => { //display list of roles
+  connection.query(`SELECT CONCAT(first_name,'', last_name) AS name from employee`,
+  (err, res) => {
+    if (err) throw err;
+     for (let i = 0; i < res.length; i++) {
+      name.push(res[i].name);
+    }
 
-  //         }
+      inquirer
+        .prompt([
+          {
+            name: 'empList',   
+            type: 'list',
+            message: 'Which Employee would you like to update?',
+            choices: name
+          },
+          {
+            name: 'newRole',
+            type: 'list',
+            message: 'What is the new role?',
+          }
+        ])
+    });
+  };
 
-  //       },
-  //     ])
     
 
   //         .then((answer) => {
@@ -284,23 +285,6 @@ const viewRole = () => {
           //     if (err) throw err;
           //     console.log(res)
           //   });
-
-
-
-  //         });
-  
-  
-      //             connection.query(`Update employee (first_name, last_name) VALUES ?,? WHERE , [data.firstName, data.lastName],
-      //             (err, res) => {
-      //               if (err) throw err;
-      //               console.log("Employee Name updated")
-      //           })
-      //         }
-      //         else if (data.firstName === null) {
-      //           connection.query(`INSERT INTO employee ( last_name) VALUES ?,?`, [data.firstName, data.lastName],
-      //           (err, res) => {
-      //             if (err) throw err;
-      //             console.log("Employee Name updated")
       //
-    
+      
 
