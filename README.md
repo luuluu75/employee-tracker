@@ -1,5 +1,5 @@
 # # Readme-Generator
-   ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/luuluu75/readme-generator?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/luuluu75/readme-generator?style=flat&logo=appveyor)
+   ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/luuluu75/employee-tracker?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/luuluu75/readme-generator?style=flat&logo=appveyor)
    
    Check out the badges hosted by [shields.io](https://shields.io/).
    
