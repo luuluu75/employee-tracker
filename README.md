@@ -19,10 +19,10 @@
    *Steps required to install project and how to get the development environment running:*
    
    In terminal, run:
-    * npm install
-    * npm install inquirer
-    * npm install mysql
-    * npm install console.table
+   * npm install
+   * npm install inquirer
+   * npm install mysql
+   * npm install console.table
     
     You are now ready to run the application - just run node index.js!
    
