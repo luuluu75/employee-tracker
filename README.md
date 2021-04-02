@@ -18,15 +18,22 @@
    
    *Steps required to install project and how to get the development environment running:*
    
-    1. In terminal, run 'npm install'
-    2. You will also need to run 'npm install inquirer' and 'npm install mysql'
-    3. You are now ready to run the application - just run node index.js
+   In terminal, run:
+    * npm install
+    * npm install inquirer
+    * npm install mysql
+    * npm install console.table
+    
+    You are now ready to run the application - just run node index.js!
    
    ## Usage 
    
    *Instructions and examples for use:*
    
-   Follow the prompts to view, add or update employee and or department details.
+   Follow the prompts to view/add/update:
+   * employee information
+   * department information
+   * role information
    
    ## License
    
